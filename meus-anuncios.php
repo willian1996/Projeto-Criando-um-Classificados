@@ -13,7 +13,7 @@ if(empty($_SESSION['cLogin'])){
 ?>
 <div class="container">
     <h1>Meus Anúncios</h1>
-    <a href="add-anuncio.php" class="btn btn-default">Adicionar Anúncio</a>
+    <a href="add-anuncios.php" class="btn btn-default">Adicionar Anúncio</a>
     
     <table class="table table-striped">
         <thead>
@@ -31,10 +31,22 @@ if(empty($_SESSION['cLogin'])){
         
         foreach($anuncios as $anuncios):
             ?>
-            <td><img src="assets/img/anuncios/<?php echo $anuncios['url']; ?>" border=""/></td>
+            <td>
+                <?php
+                if(!empty($anuncios['url'])): ?>
+                <img src="assets/img/anuncios/<?php echo $anuncios['url']; ?>" height="50" border=""/>
+                <?php else: ?>
+                <img src="assets/img/anuncios/default-store.jpg" height="50" border=""/>
+                <?php endif; ?>
+            </td>
             <td><?php echo $anuncios['titulo']; ?></td>
-            <td><?php echo number_format($anuncios['valor'], 2); ?></td>
-            <td></td>
+            <td>R$ <?php echo number_format($anuncios['valor'], 2); ?></td>
+            <td>
+                <a href="editar-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-success">Editar</a>
+                <a href="excluir-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-danger">Excluir</a>
+        
+        
+            </td>
         
             <?php 
         endforeach;
