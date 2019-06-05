@@ -24,36 +24,39 @@ if(empty($_SESSION['cLogin'])){
                 <th>Ações</th>
             </tr>
         </thead>
-        <?php
-        require_once 'classes/anuncios.class.php';
-        $a = new Anuncios();
-        $anuncios = $a->getMeusAnuncios();
-        
-        foreach($anuncios as $anuncios):
+        <tbody>
+            <?php
+            require_once 'classes/anuncios.class.php';
+            $a = new Anuncios();
+            $anuncios = $a->getMeusAnuncios();
+            foreach($anuncios as $anuncios):
+                ?>
+            <tr>
+                <td>
+                    <?php
+                    if(!empty($anuncios['url'])): ?>
+                    <img src="assets/img/anuncios/<?php echo $anuncios['url']; ?>" height="50" border=""/>
+                    <?php else: ?>
+                    <img src="assets/img/anuncios/default-store.jpg" height="50" border=""/>
+                    <?php endif; ?>
+                </td>
+                <td><?php echo $anuncios['titulo']; ?></td>
+                <td>R$ <?php echo number_format($anuncios['valor'], 2); ?></td>
+                <td>
+                    <a href="editar-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-success">Editar</a>
+                    <a href="excluir-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-danger">Excluir</a>
+
+
+                </td>
+                </tr>
+
+                <?php 
+            endforeach;
+
+
+
             ?>
-            <td>
-                <?php
-                if(!empty($anuncios['url'])): ?>
-                <img src="assets/img/anuncios/<?php echo $anuncios['url']; ?>" height="50" border=""/>
-                <?php else: ?>
-                <img src="assets/img/anuncios/default-store.jpg" height="50" border=""/>
-                <?php endif; ?>
-            </td>
-            <td><?php echo $anuncios['titulo']; ?></td>
-            <td>R$ <?php echo number_format($anuncios['valor'], 2); ?></td>
-            <td>
-                <a href="editar-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-success">Editar</a>
-                <a href="excluir-anuncio.php?id=<?php echo $anuncios['id']; ?>" class="btn btn-danger">Excluir</a>
-        
-        
-            </td>
-        
-            <?php 
-        endforeach;
-        
-        
-        
-        ?>
+        </tbody>
     </table>
 
 
