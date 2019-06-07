@@ -14,7 +14,7 @@ if(isset($_GET['p']) && !empty($_GET['p'])){
     $p = addslashes($_GET['p']);
 }
 
-$porPagina = 2;
+$porPagina = 4;
 $total_paginas = ceil($total_anuncios / $porPagina);
 $anuncios = $a->getUltimosAnuncios($p, $porPagina);
 ?>
@@ -64,30 +64,5 @@ $anuncios = $a->getUltimosAnuncios($p, $porPagina);
 </div>
 
 
-    
-    
-    
-    
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 <?php require_once 'pages/footer.php'; ?>
